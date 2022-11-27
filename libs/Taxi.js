@@ -3,7 +3,7 @@ class Order {
     this.fromUser = fromUser;
     this.whereFrom = whereFrom;
     this.passengersCount = passengersCount;
-    this.tTime = time;
+    this.time = time;
     this.contactNumber = contactNumber;
   }
 
