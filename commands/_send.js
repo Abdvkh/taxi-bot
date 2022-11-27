@@ -10,7 +10,7 @@
 CMD*/
 
 const { create: createOrder } = Libs.Taxi.order;
-const { create: createKeyboard, Button } =
+const { create: createInlineKeyboard, Button } =
   Libs.ReplyMarkupHelper.inlineKeyboardFactory;
 
 const { longitude, latitude } = User.getProperty("location");
