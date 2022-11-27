@@ -9,30 +9,50 @@
   aliases: 📤jonatish
 CMD*/
 
-const where = User.getProperty('where');
-const location = User.getProperty('location');
-const time = User.getProperty('time');
-const amount = User.getProperty('amount');
-const contact = User.getProperty('contact');
+const { create: createOrder } = Libs.Taxi.order;
+const { create: createKeyboard, Button } =
+  Libs.ReplyMarkupHelper.inlineKeyboardFactory;
+
+const { longitude, latitude } = User.getProperty("location");
+const { first_name, phone_number } = User.getProperty("contact");
+
 const admin = 469750202;
 const group = -1001861709110;
+
+const order = createOrder({
+  fromUser: user,
+  whereFrom: User.getProperty("whereFrom"),
+  time: User.getProperty("time"),
+  passengersCount: User.getProperty("passengersCount"),
+  phoneNumber: phone_number,
+});
+const keyboard = [
+  [Button("Joyni olish", { url: getLocationLink(longitude, latitude) })],
+  [
+    Button("Raqamni olish", {
+      url: getPhoneNumberLink(first_name, phone_number),
+    }),
+  ],
+];
 const body = {
-  text: `*Kimdan:* ${Libs.commonLib.getLinkFor(user)}\n\n📍*Qayerdan:* ${where}\n*Soni:* ${amount}\n🕰*Vaqti:* ${time}\n\n📞*Raqam:* +${contact.phone_number.replace('+', '').slice(0, 8)}xxxx`,
-  parse_mode: 'Markdown',
-  reply_markup: {
-    inline_keyboard: [
-      [
-        { text: 'Joyni olish', url: `https://t.me/angrentaxibot?start=l${location.longitude.toString().replace(".","_")}-${location.latitude.toString().replace(".","_")}` }
-      ],
-      [
-        { text: 'Raqamni olish', url: `https://t.me/angrentaxibot?start=ph${contact.first_name}-${contact.phone_number}` }
-      ]
-    ]
-  }
+  text: order.toString(),
+  parse_mode: "Markdown",
+  reply_markup: createInlineKeyboard(keyboard),
 };
 
-
-Api.sendMessage({chat_id: admin, ...body});
-Api.sendMessage({chat_id: group, ...body});
+Api.sendMessage({ chat_id: admin, ...body });
+Api.sendMessage({ chat_id: group, ...body });
 Api.sendMessage(body);
 
+function getLocationLink(longitude, latitude) {
+  const parsedLongitude = longitude.toString().replace(".", "_");
+  const parsedLatitude = latitude.toString().replace(".", "_");
+
+  return `https://t.me/angrentaxibot?start=l${parsedLongitude}-${parsedLatitude}`;
+}
+
+function getPhoneNumberLink(first_name, phone_number) {
+  const parsedFirstName = first_name.replace(" ", "");
+
+  return `https://t.me/angrentaxibot?start=ph${parsedFirstName}-${phone_number}`;
+}

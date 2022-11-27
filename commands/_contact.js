@@ -10,10 +10,10 @@
 CMD*/
 
 if (params) {
-  const [ first_name, phone_number ] = params.split(' ');
+  const [first_name, phone_number] = params.split(" ");
 
   Api.sendContact({
     first_name,
-    phone_number
+    phone_number,
   });
 }

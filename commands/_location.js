@@ -9,8 +9,10 @@
   aliases: 
 CMD*/
 
-const [ longitude, latitude ] = params.split(' ');
-Api.sendLocation({
-  longitude: longitude.replace("_", "."),
-  latitude: latitude.replace("_", ".")
-});
+if (params) {
+  const [longitude, latitude] = params.split(" ");
+  Api.sendLocation({
+    longitude: longitude.replace("_", "."),
+    latitude: latitude.replace("_", "."),
+  });
+}
