@@ -13,4 +13,5 @@
 CMD*/
 
 User.setProperty("location", request.location, "json");
+Bot.sendMessage("✅Joyingiz saqlandi");
 Bot.run({ command: "ask-passengers-count" });
