@@ -13,9 +13,15 @@ const contact = request.contact;
 const phoneNumber = contact ? contact.phone_number : message;
 
 if (!phoneNumber.replace("+", "").match("998[0-9]{9}")) {
-  const { create: createKeyboard, RequestContactButton } =
-    Libs.ReplyMarkupHelper.keyboardFactory;
-  const keyboard = [[RequestContactButton("📞Raqamimni jonatish")]];
+  const {
+    create: createKeyboard,
+    RequestContactButton,
+    Button,
+  } = Libs.ReplyMarkupHelper.keyboardFactory;
+  const keyboard = [
+    [RequestContactButton("📞Raqamimni jonatish")],
+    [Button("")],
+  ];
 
   Api.sendMessage({
     text: "⛔️Telefon raqamingizni boshqatdan jonating yoki tering, o'zbekiston raqamlari qabul qilinadi",
@@ -33,7 +39,11 @@ if (!phoneNumber.replace("+", "").match("998[0-9]{9}")) {
     phoneNumber: phoneNumber,
   });
 
-  User.setProperty("contact", contact, "JSON");
+  User.setProperty(
+    "contact",
+    { first_name: user.first_name, phone_number: phoneNumber },
+    "json"
+  );
   Bot.sendMessage("✅Raqamingiz saqlandi");
   Bot.sendMessage(order.toString());
   Bot.sendKeyboard(
