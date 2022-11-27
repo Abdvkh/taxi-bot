@@ -27,6 +27,11 @@ const order = createOrder({
   phoneNumber: phone_number,
 });
 const keyboard = [
+  [
+    Button("Topildi (so'rovni o'chirish)", {
+      callback_data: "delete-order " + user.telegram_id,
+    }),
+  ],
   [Button("Joyni olish", { url: getLocationLink(longitude, latitude) })],
   [
     Button("Raqamni olish", {
