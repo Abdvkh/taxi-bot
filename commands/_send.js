@@ -29,7 +29,7 @@ const order = createOrder({
 const keyboard = [
   [
     Button("Topildi (so'rovni o'chirish)", {
-      callback_data: "delete-order " + user.telegram_id,
+      callback_data: "delete-order " + user.telegramid,
     }),
   ],
   [Button("Joyni olish", { url: getLocationLink(longitude, latitude) })],
