@@ -12,7 +12,7 @@ CMD*/
 const contact = request.contact;
 const phoneNumber = contact ? contact.phone_number : message;
 
-if (!phoneNumber.match(/\+?998[0-9]{9}/gm)) {
+if (!phoneNumber.replace("+", "").match("998[0-9]{9}")) {
   const { create: createKeyboard, RequestContactButton } =
     Libs.ReplyMarkupHelper.keyboardFactory;
   const keyboard = [[RequestContactButton("📞Raqamimni jonatish")]];
