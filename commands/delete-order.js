@@ -18,9 +18,12 @@ CMD*/
 const orderOwner = params;
 const admin = 469750202;
 const permittedList = [orderOwner, admin];
+
 if (permittedList.includes(request.from.id)) {
+  Api.sendMessage({
+    text: `✅${Libs.commonLib.getLinkFor(user)} -ning so'rovi yopildi, rahmat!`,
+  });
   Api.deleteMessage({
-    chat_id: request.chat.id,
     message_id: request.message.message_id,
   });
 } else {
