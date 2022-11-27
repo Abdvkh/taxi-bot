@@ -22,6 +22,7 @@ const permittedList = [orderOwner, admin];
 if (permittedList.includes(request.from.id)) {
   Api.sendMessage({
     text: `✅${Libs.commonLib.getLinkFor(user)} -ning so'rovi yopildi, rahmat!`,
+    parse_mode: "markdown",
   });
   Api.deleteMessage({
     message_id: request.message.message_id,
