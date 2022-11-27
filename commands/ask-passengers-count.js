@@ -23,4 +23,4 @@ Api.sendMessage({
   text: `${passengersCount} kishilik joy, soat nechida ketamiz`,
   reply_markup: createFromText(keyboard),
 });
-Bot.run({ command: "time" });
+Bot.run({ command: "wait-time" });
