@@ -5,7 +5,7 @@
   auto_retry_time: 
   folder: 
   answer: ❓Nechi kishi
-  keyboard: 1,2,3,4
+  keyboard: 1,2,3,4,\n🔙Boshqatdan
   aliases: 
 CMD*/
 
