@@ -47,7 +47,7 @@ const body = {
 
 Api.sendMessage({ chat_id: admin, ...body });
 Api.sendMessage({ chat_id: group, ...body });
-Api.sendMessage(body);
+Api.sendMessage({ ...body, reply_markup: undefined });
 
 function getLocationLink(longitude, latitude) {
   const parsedLongitude = longitude.toString().replace(".", "_");

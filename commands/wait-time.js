@@ -9,8 +9,12 @@
   aliases: 
 CMD*/
 
-const { create, RequestContactButton } = Libs.ReplyMarkupHelper.keyboardFactory;
-const keyboard = [[RequestContactButton("📞Raqamimni jonatish")]];
+const { create, RequestContactButton, Button } =
+  Libs.ReplyMarkupHelper.keyboardFactory;
+const keyboard = [
+  [RequestContactButton("📞Raqamimni jonatish")],
+  [Button("🔙Boshqatdan")],
+];
 
 User.setProperty("time", message, "string");
 Api.sendMessage({
