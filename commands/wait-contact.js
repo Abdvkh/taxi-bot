@@ -10,7 +10,7 @@
 CMD*/
 
 const contact = request.contact;
-const phoneNumber = contact.phone_number ?? message;
+const phoneNumber = contact ? contact.phone_number : message;
 
 if (!phoneNumber.match(/\+?998[0-9]{9}/gm)) {
   const { create: createKeyboard, RequestContactButton } =
