@@ -15,7 +15,7 @@
   aliases: 
 CMD*/
 
-const orderOwner = params;
+const orderOwner = parseInt(params);
 const admin = 469750202;
 const permittedList = [orderOwner, admin];
 
