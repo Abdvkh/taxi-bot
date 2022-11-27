@@ -41,13 +41,16 @@ const keyboard = [
 ];
 const body = {
   text: order.toString(),
-  parse_mode: "Markdown",
-  reply_markup: createInlineKeyboard(keyboard),
+  parse_mode: "markdown",
 };
 
+Api.sendMessage({ ...body });
 Api.sendMessage({ chat_id: admin, ...body });
-Api.sendMessage({ chat_id: group, ...body });
-Api.sendMessage({ ...body, reply_markup: undefined });
+Api.sendMessage({
+  ...body,
+  chat_id: group,
+  reply_markup: createInlineKeyboard(keyboard),
+});
 
 function getLocationLink(longitude, latitude) {
   const parsedLongitude = longitude.toString().replace(".", "_");
