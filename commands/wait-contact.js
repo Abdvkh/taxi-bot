@@ -30,7 +30,7 @@ if (!phoneNumber.replace("+", "").match("998[0-9]{9}")) {
     whereFrom: User.getProperty("whereFrom"),
     passengersCount: User.getProperty("passengersCount"),
     time: User.getProperty("time"),
-    contactNumber: phoneNumber,
+    phoneNumber: phoneNumber,
   });
 
   User.setProperty("contact", contact, "JSON");
