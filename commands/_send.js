@@ -29,7 +29,7 @@ const order = createOrder({
 const keyboard = [
   [
     Button("Topildi (so'rovni o'chirish)", {
-      callback_data: "delete-order " + user.telegramid,
+      url: getTaxiConfirmationLink(user.telegramid),
     }),
   ],
   [Button("Joyni olish", { url: getLocationLink(longitude, latitude) })],
@@ -51,6 +51,10 @@ Api.sendMessage({
   chat_id: group,
   reply_markup: createInlineKeyboard(keyboard),
 });
+
+function getTaxiConfirmationLink(requestOwnerID) {
+  return `https://t.me/angrentaxibot?start=close${requestOwnerID}`;
+}
 
 function getLocationLink(longitude, latitude) {
   const parsedLongitude = longitude.toString().replace(".", "_");
