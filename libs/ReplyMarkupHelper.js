@@ -1,3 +1,4 @@
+/* SIMPLE TEXT KEYBOARD FACTORY */
 function createKeyboard(keyboard = [], resize_keyboard = true) {
   return {
     keyboard,
